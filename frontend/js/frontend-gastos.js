@@ -38,7 +38,7 @@ async function mostrarGastos() {
     </div>
   `;
 
-  const API_URL = "http://localhost:3000";
+  const API_URL = "https://barberia-app-ax71.onrender.com";
   const res = await fetch(`${API_URL}/gastos`);
   const data = await res.json();
 
