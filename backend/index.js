@@ -674,48 +674,9 @@ app.delete('/gastos/:id', async (req, res) => {
     res.status(500).json('Error al eliminar gasto');
   }
 });
-
-// Ruta POST /caja/saldo-inicial  ------ESTA ES LA QUE COMENTAMOS
-//app.post('/caja/saldo-inicial', async (req, res) => {
-//  const { fecha, valor } = req.body;
-
-//  try {
-//    const client = await auth.getClient();
-//    const sheets = google.sheets({ version: 'v4', auth: client });
-
-    // Leer las filas actuales para calcular nuevo ID
-    const result = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: 'Caja!A2:G',
-    });
-
-    const filas = result.data.values || [];
-    const ids = filas.map(f => parseInt(f[0])).filter(n => !isNaN(n));
-    const nuevoId = (Math.max(...ids, 0) || 0) + 1;
-
-    const fila = [
-      nuevoId,
-      fecha,
-      "Entrada",
-      "Saldo Inicial",
-      "-",
-      valor,
-      valor // Saldo inicial igual al valor ingresado
-    ];
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
-      range: 'Caja!A:G',
-      valueInputOption: 'RAW',
-      requestBody: { values: [fila] },
-    });
-
-    res.status(201).json({ message: "Saldo inicial agregado" });
-  } catch (err) {
-    console.error('❌ Error POST /caja/saldo-inicial:', err);
-    res.status(500).json('Error al guardar saldo inicial');
-  }
-});
+/*
+//ACA LOQUE ELIMINAMOS
+*/
 // ✅ Ruta: Agregar saldo inicial
 app.post('/caja/saldo-inicial', async (req, res) => {
   const { Fecha, Movimiento, Descripción, ClienteProveedor, Valor } = req.body;
