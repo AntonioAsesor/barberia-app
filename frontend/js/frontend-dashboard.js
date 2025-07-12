@@ -45,7 +45,7 @@ async function cargarDatosDashboard() {
   const hasta = document.getElementById("filtroHasta")?.value;
 
   try {
-    const res = await fetch("http://localhost:3000/dashboard/metrics", {
+    const res = await fetch("https://barberia-app-ax71.onrender.com/dashboard/metrics", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ desde, hasta }),
