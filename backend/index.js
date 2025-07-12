@@ -21,7 +21,6 @@ const auth = new google.auth.GoogleAuth({
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
-
 // ✅ Servir archivos estáticos de la carpeta frontend
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 // 👉 Función auxiliar para obtener cliente de Sheets
