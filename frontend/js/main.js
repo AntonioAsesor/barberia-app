@@ -1,5 +1,5 @@
 // main.js ✅ Versión funcional con Sexo y Grupo corregidos
-const API_URL = "http://localhost:3000";
+const API_URL = "https://barberia-app-ax71.onrender.com";
 
 // Cargar info del negocio
 function cargarDatosNegocio() {
@@ -277,7 +277,7 @@ async function mostrarServicios() {
     </div>
   `;
 
-  const API_URL = "http://localhost:3000";
+  const API_URL = "https://barberia-app-ax71.onrender.com";
   const res = await fetch(`${API_URL}/servicios`);
   const data = await res.json();
   let headers = [...data[0]];
