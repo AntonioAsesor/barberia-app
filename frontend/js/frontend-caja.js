@@ -54,7 +54,7 @@ async function mostrarCaja() {
   document.getElementById("btnAgregarSaldoInicial").onclick = agregarSaldoInicial;
   document.getElementById("btnActualizarCaja").onclick = actualizarCaja;
 
-  const API_URL = "http://localhost:3000";
+  const API_URL = "https://barberia-app-ax71.onrender.com";
   const res = await fetch(`${API_URL}/sheet/Caja`);
   const data = await res.json();
   const headers = data[0];
@@ -172,7 +172,7 @@ async function actualizarCaja() {
     const hasta = prompt("Hasta (yyyy-mm-dd):");
     if (!desde || !hasta) return alert("Fechas inválidas");
 
-    const res = await fetch("http://localhost:3000/caja/actualizar", {
+    const res = await fetch("https://barberia-app-ax71.onrender.com/caja/actualizar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ desde, hasta }),
