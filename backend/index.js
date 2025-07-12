@@ -212,7 +212,7 @@ app.get('/datos-negocio', async (req, res) => {
     res.json(result.data.values); // Array de pares [campo, valor]
   } catch (err) {
     console.error('Error /datos-negocio:', err);
-    res.status(500).json({ error: 'Error obteniendo datos del negocio' });{ error: 'Error obteniendo datos del negocio' }
+    res.status(500).json({ error: 'Error obteniendo datos del negocio' });
   }
 });
 /////////////////  ----------------------------------------------------------------------------------- ///////////
