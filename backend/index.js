@@ -17,7 +17,7 @@ app.use(express.json());
 const SPREADSHEET_ID = '1NJIdowqiNKeH0aupbysbkJto9AODk6lQAPgjdRQ6wkg';
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: 'credentials.json',
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
