@@ -1,7 +1,13 @@
 const express = require('express');
 const { google } = require('googleapis');
 const cors = require('cors');
+const corsOptions = {
+  origin: 'https://barberia-frontend.onrender.com',
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true
+};
 
+app.use(cors(corsOptions));
 const app = express();
 app.use(cors());
 app.use(express.json());
