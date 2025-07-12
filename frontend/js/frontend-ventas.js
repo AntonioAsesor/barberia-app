@@ -38,7 +38,7 @@ async function mostrarVentas() {
     </div>
   `;
 
-  const API_URL = "http://localhost:3000";
+  const API_URL = "https://barberia-app-ax71.onrender.com";
   const [resVentas, resClientes, resServicios] = await Promise.all([
     fetch(`${API_URL}/ventas`),
     fetch(`${API_URL}/clientes`),
