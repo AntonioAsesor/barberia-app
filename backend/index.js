@@ -42,7 +42,7 @@ app.get('/clientes', async (req, res) => {
     res.json(result.data.values); // <-- Esta línea debe estar antes de cerrar la ruta
   } catch (err) {
     console.error('Error /clientes:', err);
-    res.status(500).send('Error obteniendo clientes');
+    res.status(500).json('Error obteniendo clientes');
   }
 }); // ✅ ← ESTA llave debe cerrar justo aquí
 
@@ -84,7 +84,7 @@ app.post('/clientes', async (req, res) => {
     res.status(201).json({ id: nuevoId });
   } catch (err) {
     console.error('Error POST /clientes:', err);
-    res.status(500).send('Error al crear cliente');
+    res.status(500).json('Error al crear cliente');
   }
 });
 // Editar cliente
@@ -174,7 +174,7 @@ app.delete('/clientes/:id', async (req, res) => {
     res.sendStatus(200);
   } catch (err) {
     console.error('Error DELETE /clientes:', err);
-    res.status(500).send('Error al eliminar cliente');
+    res.status(500).json('Error al eliminar cliente');
   }
 });
 // -------------------------------------------------------------------------------
@@ -211,7 +211,7 @@ app.get('/datos-negocio', async (req, res) => {
     res.json(result.data.values); // Array de pares [campo, valor]
   } catch (err) {
     console.error('Error /datos-negocio:', err);
-    res.status(500).send('Error obteniendo datos del negocio');
+    res.status(500).json('Error obteniendo datos del negocio');
   }
 });
 /////////////////  ----------------------------------------------------------------------------------- ///////////
@@ -229,7 +229,7 @@ app.get('/servicios', async (req, res) => {
     res.json(result.data.values);
   } catch (err) {
     console.error('Error GET /servicios:', err);
-    res.status(500).send('Error obteniendo servicios');
+    res.status(500).json('Error obteniendo servicios');
   }
 });
 
@@ -267,7 +267,7 @@ app.post('/servicios', async (req, res) => {
     res.status(201).json({ id: nuevoId });
   } catch (err) {
     console.error('Error POST /servicios:', err);
-    res.status(500).send('Error al crear servicio');
+    res.status(500).json('Error al crear servicio');
   }
 });
 
@@ -380,7 +380,7 @@ app.get('/ventas', async (req, res) => {
     res.json(result.data.values); // incluye encabezado
   } catch (err) {
     console.error('❌ Error GET /ventas:', err);
-    res.status(500).send('Error al obtener ventas');
+    res.status(500).json('Error al obtener ventas');
   }
 });
 
@@ -422,7 +422,7 @@ app.post('/ventas', async (req, res) => {
     res.status(201).json({ id: nuevoId });
   } catch (err) {
     console.error('❌ Error POST /ventas:', err);
-    res.status(500).send('Error al registrar la venta');
+    res.status(500).json('Error al registrar la venta');
   }
 });
 
@@ -466,7 +466,7 @@ app.put('/ventas/:id', async (req, res) => {
     res.send("Venta actualizada");
   } catch (err) {
     console.error('Error PUT /ventas:', err);
-    res.status(500).send('Error al actualizar venta');
+    res.status(500).json('Error al actualizar venta');
   }
 });
 
@@ -510,7 +510,7 @@ console.log("Venta a eliminar: ID:", id, "Fila encontrada (índice):", index);
     res.send("Venta eliminada");
   } catch (err) {
   console.error('❌ Error DELETE /ventas:', JSON.stringify(err, null, 2));
-  res.status(500).send('Error al eliminar venta');
+  res.status(500).json('Error al eliminar venta');
 }
 });
 
@@ -532,7 +532,7 @@ console.log("Venta a eliminar: ID:", id, "Fila encontrada (índice):", index);
   //  res.json(sheetsInfo);
   //} catch (err) {
   //  console.error("Error al obtener sheetIds:", err);
-  //  res.status(500).send("Error al obtener IDs de las hojas");
+  //  res.status(500).json("Error al obtener IDs de las hojas");
   //}
 //});
 
@@ -552,7 +552,7 @@ app.get('/gastos', async (req, res) => {
     res.json(rows);
   } catch (err) {
     console.error('❌ Error GET /gastos:', err);
-    res.status(500).send('Error al obtener gastos');
+    res.status(500).json('Error al obtener gastos');
   }
 });
 
@@ -590,7 +590,7 @@ app.post('/gastos', async (req, res) => {
     res.status(201).json({ id: nuevoId });
   } catch (err) {
     console.error('❌ Error POST /gastos:', err);
-    res.status(500).send('Error al registrar el gasto');
+    res.status(500).json('Error al registrar el gasto');
   }
 });
 
@@ -631,7 +631,7 @@ app.put('/gastos/:id', async (req, res) => {
     res.send("Gasto actualizado");
   } catch (err) {
     console.error('❌ Error PUT /gastos:', err);
-    res.status(500).send('Error al actualizar gasto');
+    res.status(500).json('Error al actualizar gasto');
   }
 });
 
@@ -670,17 +670,17 @@ app.delete('/gastos/:id', async (req, res) => {
     res.send("Gasto eliminado");
   } catch (err) {
     console.error('❌ Error DELETE /gastos:', JSON.stringify(err, null, 2));
-    res.status(500).send('Error al eliminar gasto');
+    res.status(500).json('Error al eliminar gasto');
   }
 });
 
-// Ruta POST /caja/saldo-inicial
-app.post('/caja/saldo-inicial', async (req, res) => {
-  const { fecha, valor } = req.body;
+// Ruta POST /caja/saldo-inicial  ------ESTA ES LA QUE COMENTAMOS
+//app.post('/caja/saldo-inicial', async (req, res) => {
+//  const { fecha, valor } = req.body;
 
-  try {
-    const client = await auth.getClient();
-    const sheets = google.sheets({ version: 'v4', auth: client });
+//  try {
+//    const client = await auth.getClient();
+//    const sheets = google.sheets({ version: 'v4', auth: client });
 
     // Leer las filas actuales para calcular nuevo ID
     const result = await sheets.spreadsheets.values.get({
@@ -712,7 +712,7 @@ app.post('/caja/saldo-inicial', async (req, res) => {
     res.status(201).json({ message: "Saldo inicial agregado" });
   } catch (err) {
     console.error('❌ Error POST /caja/saldo-inicial:', err);
-    res.status(500).send('Error al guardar saldo inicial');
+    res.status(500).json('Error al guardar saldo inicial');
   }
 });
 // ✅ Ruta: Agregar saldo inicial
@@ -751,7 +751,7 @@ app.post('/caja/saldo-inicial', async (req, res) => {
     res.status(201).send("Saldo inicial guardado");
   } catch (err) {
     console.error("❌ Error POST /caja/saldo-inicial:", err);
-    res.status(500).send("Error al guardar saldo inicial");
+    res.status(500).json("Error al guardar saldo inicial");
   }
 });
 
@@ -864,7 +864,7 @@ res.send("Caja actualizada");
 
   } catch (err) {
     console.error("❌ Error POST /caja/actualizar:", err);
-    res.status(500).send("Error al actualizar caja");
+    res.status(500).json("Error al actualizar caja");
   }
 });
 // ✅ Ruta: Obtener todos los movimientos de Caja
@@ -878,7 +878,7 @@ app.get('/sheet/Caja', async (req, res) => {
     res.json(result.data.values);
   } catch (error) {
     console.error("❌ Error GET /sheet/Caja:", error);
-    res.status(500).send("Error obteniendo datos de Caja");
+    res.status(500).json("Error obteniendo datos de Caja");
   }
 });
      //////// ----------------- DASHBOARD ----------- /////////
@@ -963,7 +963,7 @@ res.json({
 
   } catch (err) {
     console.error("❌ Error en /dashboard/metrics:", err);
-    res.status(500).send("Error calculando métricas del dashboard");
+    res.status(500).json("Error calculando métricas del dashboard");
   }
 });
 
