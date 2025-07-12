@@ -1,6 +1,9 @@
 const express = require('express');
 const { google } = require('googleapis');
 const cors = require('cors');
+const path = require('path');
+const app = express();
+
 const corsOptions = {
   origin: 'https://barberia-frontend.onrender.com',
   methods: 'GET,POST,PUT,DELETE',
@@ -8,7 +11,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-const app = express();
 app.use(express.json());
 
 // 👉 ID de la hoja de cálculo (pegado directamente)
@@ -18,7 +20,7 @@ const auth = new google.auth.GoogleAuth({
   keyFile: 'credentials.json',
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
-const path = require('path');
+
 
 // ✅ Servir archivos estáticos de la carpeta frontend
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
@@ -210,7 +212,7 @@ app.get('/datos-negocio', async (req, res) => {
     res.json(result.data.values); // Array de pares [campo, valor]
   } catch (err) {
     console.error('Error /datos-negocio:', err);
-    res.status(500).json('Error obteniendo datos del negocio');
+    res.status(500).json({ error: 'Error obteniendo datos del negocio' });
   }
 });
 /////////////////  ----------------------------------------------------------------------------------- ///////////
