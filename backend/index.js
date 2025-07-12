@@ -9,7 +9,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 // 👉 ID de la hoja de cálculo (pegado directamente)
