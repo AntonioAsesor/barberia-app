@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-
+require('dotenv').config();
 const corsOptions = {
   origin: 'https://barberia-frontend.onrender.com',
   methods: 'GET,POST,PUT,DELETE',
