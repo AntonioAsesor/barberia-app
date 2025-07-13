@@ -15,7 +15,7 @@ app.use(express.json());
 
 // 👉 ID de la hoja de cálculo (pegado directamente)
 const SPREADSHEET_ID = '1NJIdowqiNKeH0aupbysbkJto9AODk6lQAPgjdRQ6wkg';
-
+console.log('🔐 GOOGLE_CREDENTIALS length:', process.env.GOOGLE_CREDENTIALS ? process.env.GOOGLE_CREDENTIALS.length : 'VARIABLE NO DEFINIDA');
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
