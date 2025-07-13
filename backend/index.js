@@ -4,6 +4,10 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 require('dotenv').config();
+
+// ⚠️ FIX para claves privadas en Node 17+
+process.env.NODE_OPTIONS = '--openssl-legacy-provider';
+
 const corsOptions = {
   origin: 'https://barberia-frontend.onrender.com',
   methods: 'GET,POST,PUT,DELETE',
