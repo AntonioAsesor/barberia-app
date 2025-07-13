@@ -6,7 +6,7 @@ function cargarDatosNegocio() {
   fetch(`${API_URL}/datos-negocio`)
     .then(res => res.json())
     .then(data => {
-      const info = Object.fromEntries(data);
+      const info = Array.isArray(data) ? Object.fromEntries(data) : data;
       document.getElementById("nombreNegocio").textContent = info["Nombre del Negocio"] || "Mi Negocio";
       document.getElementById("contactoNegocio").textContent = `${info["Teléfono"] || "-"} | ${info["Email"] || "-"} | ${info["RUC/NIT"] || "-"} | ${info["Moneda"] || "-"}`;
     })
