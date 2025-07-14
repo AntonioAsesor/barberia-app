@@ -1,14 +1,17 @@
 {
-    "name": "backend-crm",
-    "version": "1.0.0",
-    "main": "index.js",
-    "scripts": {
+  "name": "backend-crm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
     "start": "node index.js"
   },
-    "dependencies": {
-      "express": "^4.18.2",
-      "googleapis": "^127.0.0",
-      "cors": "^2.8.5",
-      "dotenv": "^16.3.1"
-    }
-  }  
+  "dependencies": {
+    "express": "^4.18.2",
+    "googleapis": "^127.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  }
+}
