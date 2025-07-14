@@ -203,6 +203,7 @@ app.get('/grupos', async (req, res) => {
 
 // ✅ Nueva ruta para obtener los datos del negocio
 app.get('/datos-negocio', async (req, res) => {
+   console.log('🔍 Llamando a Sheets para DatosNegocio'); // <-- agregar
   try {
     const client = await auth.getClient();
     const sheets = google.sheets({ version: 'v4', auth: client });
